@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[MyPKM]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>MyPKM</title><link></link></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Fri, 07 Feb 2025 07:10:47 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Fri, 07 Feb 2025 07:10:46 GMT</pubDate><ttl>60</ttl><dc:creator></dc:creator><item><title><![CDATA[Docker Installation (Ubuntu 20.04)]]></title><description><![CDATA[ 
+ <br>•{Update Ubuntu System} In a new terminal (ctrl + alt +&nbsp; T) and run:<br>sudo apt update
+sudo apt upgrade
+<br>•{Install Docker Dependencies} in the same terminal and run:<br>sudo apt install apt-transport-https ca-certificates curl software-properties-common
+<br>•{Add Docker's Official GPG Key and Repository} in the same terminal and run:<br>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+<br>echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+<br>•{Install Docker} In a new terminal (ctrl + alt +&nbsp; T) and run:<br>sudo apt update
+sudo apt install docker-ce
+<br>•{Verify Docker Installation} in the same terminal and run:<br>sudo systemctl status docker
+<br>Press ctrl +c to exit<br>•{add user to the Docker group} in the same terminal and run:<br>sudo usermod -aG docker $USER
+<br>•Log out and log in Ubuntu for the changes to take effect]]></description><link>Docker_Installation\Docker Installation (Ubuntu 20.04).html</link><guid isPermaLink="false">Docker_Installation/Docker Installation (Ubuntu 20.04).md</guid><pubDate>Fri, 07 Feb 2025 06:29:42 GMT</pubDate></item><item><title><![CDATA[Moveit2]]></title><description><![CDATA[ 
+ <br><br>
+<br>
+Install VirtualBox<br>
+<a data-href="VirtualBox_Installation.pdf" href="VirtualBOX\VirtualBox_Installation.pdf" class="internal-link" target="_self" rel="noopener nofollow">VirtualBox_Installation.pdf</a>
+
+<br>
+Install Docker on Ubuntu<br>
+<a data-href="Docker Installation (Ubuntu 20.04)" href="Docker_Installation\Docker Installation (Ubuntu 20.04).html" class="internal-link" target="_self" rel="noopener nofollow">Docker Installation (Ubuntu 20.04)</a>
+
+<br><br>
+<br>Open a terminal session
+<br>wget https://raw.githubusercontent.com/moveit/moveit2_tutorials/main/.docker/docker-compose.yml
+<br>
+<br>Launch the container
+<br>DOCKER_IMAGE=main-rolling-tutorial-source docker compose run --rm --name moveit2_container cpu
+
+<br>***If you wish to enter the container through another terminal, use:***
+<br>docker exec -it moveit2_container /bin/bash
+
+]]></description><link>Moveit2\Moveit2.html</link><guid isPermaLink="false">Moveit2/Moveit2.md</guid><pubDate>Fri, 07 Feb 2025 07:06:02 GMT</pubDate></item><item><title><![CDATA[Main Page]]></title><description><![CDATA[ 
+ <br><a data-href="Moveit2" href="Moveit2\Moveit2.html" class="internal-link" target="_self" rel="noopener nofollow">Moveit2</a>]]></description><link>Main Page.html</link><guid isPermaLink="false">Main Page.md</guid><pubDate>Fri, 07 Feb 2025 07:10:21 GMT</pubDate></item></channel></rss>
