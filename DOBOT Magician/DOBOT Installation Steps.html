@@ -57,7 +57,9 @@ from rclpy.action import ActionClient
 from dobot_msgs.action import PointToPoint
 from dobot_msgs.srv import SuctionCupControl
 from dobot_msgs.srv import ExecuteHomingProcedure
+from action_msgs.msg import GoalStatus
 import time
+
 
 class pick_place(Node):
 
@@ -71,22 +73,41 @@ class pick_place(Node):
         while not self.cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info("service not available, waiting again...")
         self.req = SuctionCupControl.Request()
+        self.status = GoalStatus.STATUS_EXECUTING
 
-        self.state = 0
-        self.layer = 1
-        self.position = 1
-        self.x = 150.0
-        self.y = 45.0
-        self.z = 42.0
-        self.theta = 0.0
+        # Setup home Service
+        self.client = self.create_client(
+            ExecuteHomingProcedure, "/dobot_homing_service"
+        )
+
+        while not self.client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info("Waiting for service to be available...")
+
+    def send_request(self):
+        self.status = GoalStatus.STATUS_EXECUTING
+        request = ExecuteHomingProcedure.Request()
+        future = self.client.call_async(request)
+        future.add_done_callback(self.response_callback)
+
+    def response_callback(self, future):
+        try:
+            response = future.result()
+            self.get_logger().info(f"Homing procedure result: {response.success}")
+            self.status = GoalStatus.STATUS_SUCCEEDED
+        except Exception as e:
+            self.get_logger().error(f"Service call failed: {str(e)}")
 
     def send_suction_request(self, enable_suction):  # Enable/Disable Scution
+        self.status = GoalStatus.STATUS_EXECUTING
         self.req.enable_suction = enable_suction
         self.suction_future = self.cli.call_async(self.req)
         self.suction_future.add_done_callback(self.suction_done_callback)
 
-    def suction_done_callback(self, future):
-        self.get_logger().info("suction done")
+    def suction_done_callback(
+        self, future
+    ):  # Checksum of suction, triggers decision() when suction command is done
+        print("Done suction")
+        self.status = GoalStatus.STATUS_SUCCEEDED
 
     def goal_response_callback(self, future):
         goal_handle = future.result()
@@ -106,6 +127,7 @@ class pick_place(Node):
     ):  # Checksum of movement, trigger dicision() when movement is done
         result = future.result().result
         self.get_logger().info("Result: {0}".format(result))
+        self.status = GoalStatus.STATUS_SUCCEEDED
 
     def feedback_callback(self, feedback):  # Feedback of current position
         self.get_logger().info(
@@ -113,6 +135,7 @@ class pick_place(Node):
         )
 
     def send_goal(self, target, mode):  # Send goal for movement
+        self.status = GoalStatus.STATUS_EXECUTING
         self.get_logger().info("Waiting for action server...")
         self._action_client.wait_for_server()
 
@@ -127,9 +150,6 @@ class pick_place(Node):
 
         self._send_goal_future.add_done_callback(self.goal_response_callback)
 
-    def goto_coordinate(self, x, y, z, theta):  # Move to pickup location
-        self.send_goal(target=[x, y, z, theta], mode=1)
-
     def pick_action(self):  # Turn on suction for pickup
         self.send_suction_request(True)
 
@@ -139,27 +159,118 @@ class pick_place(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-
     action_client = pick_place()
 
-    # move to a coordinate
-    action_client.goto_coordinate(150.0, 0.0, 50.0, 0.0)
-    time.sleep(1)
-    # Turn on suction
-    action_client.pick_action()
-    time.sleep(1)
-    # move to a coordinate
-    action_client.goto_coordinate(150.0, 00.0, 100.0, 0.0)
-    time.sleep(1)
-    # Turn off suction
-    action_client.place_action()
-    time.sleep(1)
-    
-    rclpy.spin(action_client)
+    movement_step = 0
+    skipStep = 0
+    pickOrPlace = True
+    x = 200.0
+    y = 0.0
+    z = 0.0
+    moveX = 30.0
+    moveY = 30.0
+    moveZ = 48.0  # 47.5
+
+    while rclpy.ok():
+        # Your modification start here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        if movement_step == 0:
+
+            skipStep += 1
+            if skipStep &gt;= 5:
+                skipStep = 0
+                movement_step = movement_step + 2
+            action_client.send_goal(target=[x + moveX, y, z, 0.0], mode=1)  # pos 1, up
+        elif movement_step == 1:
+            action_client.send_goal(
+                target=[x + moveX, y, z - moveZ, 0.0], mode=1
+            )  # pos 1, down
+        elif movement_step == 2:
+            action_client.send_suction_request(
+                pickOrPlace
+            )  # 1 True | 0  Skip | 4  False | 3  True | 2  False
+            pickOrPlace = not pickOrPlace
+        elif movement_step == 3:
+            action_client.send_goal(target=[x + moveX, y, z, 0.0], mode=1)  # pos 1, up
+
+        elif movement_step == 4:
+
+            skipStep += 1
+            if skipStep &gt;= 5:
+                skipStep = 0
+                movement_step = movement_step + 2
+            action_client.send_goal(target=[x, y + moveY, z, 0.0], mode=1)  # pos 2, up
+        elif movement_step == 5:
+            action_client.send_goal(
+                target=[x, y + moveY, z - moveZ, 0.0], mode=1
+            )  # pos 2, down
+        elif movement_step == 6:
+            action_client.send_suction_request(
+                pickOrPlace
+            )  # 2  False | 1  True | 0  Skip | 4  False | 3  True
+            pickOrPlace = not pickOrPlace
+        elif movement_step == 7:
+            action_client.send_goal(target=[x, y + moveY, z, 0.0], mode=1)  # pos 2, up
+
+        elif movement_step == 8:
+
+            skipStep += 1
+            if skipStep &gt;= 5:
+                skipStep = 0
+                movement_step = movement_step + 2
+            action_client.send_goal(target=[x - moveX, y, z, 0.0], mode=1)  # pos 3, up
+        elif movement_step == 9:
+            action_client.send_goal(
+                target=[x - moveX, y, z - moveZ, 0.0], mode=1
+            )  # pos 3, down
+        elif movement_step == 10:
+            action_client.send_suction_request(
+                pickOrPlace
+            )  # 3, True | 2  False| 1  True | 0  Skip | 4 False
+            pickOrPlace = not pickOrPlace
+        elif movement_step == 11:
+            action_client.send_goal(target=[x - moveX, y, z, 0.0], mode=1)  # pos 3, up
+
+        elif movement_step == 12:
+
+            skipStep += 1
+            if skipStep &gt;= 5:
+                skipStep = 0
+                movement_step = movement_step + 2
+            action_client.send_goal(target=[x, y - moveY, z, 0.0], mode=1)  # pos 4, up
+        elif movement_step == 13:
+            action_client.send_goal(
+                target=[x, y - moveY, z - moveZ, 0.0], mode=1
+            )  # pos 4, down
+        elif movement_step == 14:
+            action_client.send_suction_request(
+                pickOrPlace
+            )  # 4, False | 3  True |2  False | 1 True | 0 SKip|
+            pickOrPlace = not pickOrPlace
+        elif movement_step == 15:
+            action_client.send_goal(target=[x, y - moveY, z, 0.0], mode=1)  # pos 4, up
+
+        while action_client.status != GoalStatus.STATUS_SUCCEEDED:
+            rclpy.spin_once(action_client)
+
+        action_client.get_logger().info(
+            f"Step {movement_step} completed and skip step: {skipStep}. Doing next step"
+        )
+
+        time.sleep(1)
+        movement_step += 1
+        if movement_step &gt;= 16:
+            movement_step = 0
+
+        # Your modification end here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    action_client.destroy_node()
+    rclpy.shutdown()
 
 
 if __name__ == "__main__":
     main()
 
-</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto">**Open a new tab of terminal, and run: </p></div><div class="el-pre"><pre><code data-line="0">python3 dobotPythonCode.py
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto">**Open a new tab of terminal, and run: </p></div><div class="el-p"><p dir="auto"><span style="color: red; font-size: 20px; font-weight: bold;"> You must do the homing process and wait for the green light before running the Python code. </span></p></div><div class="el-pre"><pre><code data-line="0">ros2 service call /dobot_homing_service dobot_msgs/srv/ExecuteHomingProcedure
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-pre"><pre><code data-line="0">python3 dobotPythonCode.py
 </code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="mod-footer mod-ui"></div></div></div></div></div></div><div class="sidebar-right sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content"></div><script defer="">let rs = document.querySelector(".sidebar-right"); rs.classList.add("is-collapsed"); if (window.innerWidth > 768) rs.classList.remove("is-collapsed"); rs.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-right-width"));</script></div></div></body></html>
