@@ -1,6 +1,6 @@
 {
   "vaultName": "MyPKM",
-  "lastExport": 1754368585706,
+  "lastExport": 1754368749227,
   "pluginVersion": "1.8.01",
   "validBodyClasses": "publish css-settings-manager theme-light show-inline-title show-ribbon",
   "useCustomHeadContent": false,
@@ -59,205 +59,205 @@
   ],
   "fileInfo": {
     "Docker/Docker Installation (Ubuntu 20.04).md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 1137,
       "exportedPath": "Docker/Docker Installation (Ubuntu 20.04).html",
       "dependencies": []
     },
     "Index.md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 352,
       "exportedPath": "Index.html",
       "dependencies": []
     },
     "lib/fonts/94f2f163d4b698242fef.otf": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 66800,
       "exportedPath": "lib/fonts/94f2f163d4b698242fef.otf",
       "dependencies": []
     },
     "lib/fonts/72505e6a122c6acd5471.woff2": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 104232,
       "exportedPath": "lib/fonts/72505e6a122c6acd5471.woff2",
       "dependencies": []
     },
     "lib/fonts/2d5198822ab091ce4305.woff2": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 104332,
       "exportedPath": "lib/fonts/2d5198822ab091ce4305.woff2",
       "dependencies": []
     },
     "lib/fonts/c8ba52b05a9ef10f4758.woff2": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 98868,
       "exportedPath": "lib/fonts/c8ba52b05a9ef10f4758.woff2",
       "dependencies": []
     },
     "lib/fonts/cb10ffd7684cd9836a05.woff2": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 106876,
       "exportedPath": "lib/fonts/cb10ffd7684cd9836a05.woff2",
       "dependencies": []
     },
     "lib/fonts/b5f0f109bc88052d4000.woff2": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 105804,
       "exportedPath": "lib/fonts/b5f0f109bc88052d4000.woff2",
       "dependencies": []
     },
     "lib/fonts/cbe0ae49c52c920fd563.woff2": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 106108,
       "exportedPath": "lib/fonts/cbe0ae49c52c920fd563.woff2",
       "dependencies": []
     },
     "lib/fonts/535a6cf662596b3bd6a6.woff2": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 111708,
       "exportedPath": "lib/fonts/535a6cf662596b3bd6a6.woff2",
       "dependencies": []
     },
     "lib/fonts/70cc7ff27245e82ad414.ttf": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 192740,
       "exportedPath": "lib/fonts/70cc7ff27245e82ad414.ttf",
       "dependencies": []
     },
     "lib/fonts/454577c22304619db035.ttf": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 161376,
       "exportedPath": "lib/fonts/454577c22304619db035.ttf",
       "dependencies": []
     },
     "lib/fonts/52ac8f3034507f1d9e53.ttf": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 191568,
       "exportedPath": "lib/fonts/52ac8f3034507f1d9e53.ttf",
       "dependencies": []
     },
     "lib/fonts/05b618077343fbbd92b7.ttf": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 155288,
       "exportedPath": "lib/fonts/05b618077343fbbd92b7.ttf",
       "dependencies": []
     },
     "lib/fonts/4bb6ac751d1c5478ff3a.woff2": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 7876,
       "exportedPath": "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
       "dependencies": []
     },
     "lib/media/6155340132a851f6089e.svg": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 315,
       "exportedPath": "lib/media/6155340132a851f6089e.svg",
       "dependencies": []
     },
     "Robotics Kinematics/DOBOT Magician/DOBOT Installation Steps.md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 11286,
       "exportedPath": "Robotics Kinematics/DOBOT Magician/DOBOT Installation Steps.html",
       "dependencies": []
     },
     "Robotics Kinematics/DOBOT Magician/EEE60204_Lab_202502 1.pdf": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 289752,
       "exportedPath": "Robotics Kinematics/DOBOT Magician/EEE60204_Lab_202502 1.pdf",
       "dependencies": []
     },
     "Robotics Kinematics/Inverse Kinematics -Newton-Rapson/Inverse Kinematics -Newton-Rapson.md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 13755,
       "exportedPath": "Robotics Kinematics/Inverse Kinematics -Newton-Rapson/Inverse Kinematics -Newton-Rapson.html",
       "dependencies": []
     },
     "Robotics Kinematics/Moveit2/Assignment Guide.md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 25346,
       "exportedPath": "Robotics Kinematics/Moveit2/Assignment Guide.html",
       "dependencies": []
     },
     "Robotics Kinematics/Moveit2/EEE60204_Assignment_20250224.pdf": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 293199,
       "exportedPath": "Robotics Kinematics/Moveit2/EEE60204_Assignment_20250224.pdf",
       "dependencies": []
     },
     "Robotics Kinematics/Moveit2/hello_moveit.cpp (tutorial 3).md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 3288,
       "exportedPath": "Robotics Kinematics/Moveit2/hello_moveit.cpp (tutorial 3).html",
       "dependencies": []
     },
     "Robotics Kinematics/Moveit2/Hello_moveit.cpp (Tutorial 4).md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 4552,
       "exportedPath": "Robotics Kinematics/Moveit2/Hello_moveit.cpp (Tutorial 4).html",
       "dependencies": []
     },
     "Robotics Kinematics/Moveit2/Links.md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 634,
       "exportedPath": "Robotics Kinematics/Moveit2/Links.html",
       "dependencies": []
     },
     "Robotics Kinematics/Moveit2/Moveit2 Installation.md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 900,
       "exportedPath": "Robotics Kinematics/Moveit2/Moveit2 Installation.html",
       "dependencies": []
     },
     "Robotics Kinematics/Moveit2/Moveit2 Tutorial 1.md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 3638,
       "exportedPath": "Robotics Kinematics/Moveit2/Moveit2 Tutorial 1.html",
       "dependencies": []
     },
     "Robotics Kinematics/Moveit2/Moveit2 Tutorial 2.md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 4669,
       "exportedPath": "Robotics Kinematics/Moveit2/Moveit2 Tutorial 2.html",
       "dependencies": []
     },
     "Robotics Kinematics/Moveit2/Moveit2 Tutorial 3.md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 9776,
       "exportedPath": "Robotics Kinematics/Moveit2/Moveit2 Tutorial 3.html",
       "dependencies": []
     },
     "Robotics Kinematics/Moveit2/Moveit2 Tutorial 4.md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 4901,
       "exportedPath": "Robotics Kinematics/Moveit2/Moveit2 Tutorial 4.html",
       "dependencies": []
     },
     "Robotics Kinematics/Moveit2/Moveit2 Tutorial 5.md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 19381,
       "exportedPath": "Robotics Kinematics/Moveit2/Moveit2 Tutorial 5.html",
       "dependencies": []
     },
     "Robotics Kinematics/Moveit2/Moveit2 Tutorial 6.md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 7009,
       "exportedPath": "Robotics Kinematics/Moveit2/Moveit2 Tutorial 6.html",
       "dependencies": []
     },
     "Robotics Kinematics/Moveit2/Moveit2 Tutorial 7.md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 26726,
       "exportedPath": "Robotics Kinematics/Moveit2/Moveit2 Tutorial 7.html",
       "dependencies": []
     },
     "Robotics Kinematics/Moveit2/mtc_node.cpp (Tutorial 5).md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 9484,
       "exportedPath": "Robotics Kinematics/Moveit2/mtc_node.cpp (Tutorial 5).html",
       "dependencies": []
     },
     "Robotics Kinematics/Moveit2/mtc_node.cpp (Tutorial 6).md": {
-      "modifiedTime": 1754368585706,
+      "modifiedTime": 1754368749227,
       "sourceSize": 13196,
       "exportedPath": "Robotics Kinematics/Moveit2/mtc_node.cpp (Tutorial 6).html",
       "dependencies": []
